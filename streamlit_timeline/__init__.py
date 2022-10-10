@@ -89,7 +89,8 @@ if not _RELEASE:
     # Create an instance of our component with a constant `name` arg, and
     # print its output value.
     num_clicks = st_timeline("World")
-    st.markdown("You've clicked %s times!" % int(num_clicks))
+    st.markdown("You've clicked %s times!" % num_clicks)
+    # st.markdown("You've clicked %s times!" % int(num_clicks))
 
     st.markdown("---")
     st.subheader("Component with variable args")

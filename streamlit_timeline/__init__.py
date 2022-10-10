@@ -35,7 +35,8 @@ else:
     # build directory:
     parent_dir = os.path.dirname(os.path.abspath(__file__))
     build_dir = os.path.join(parent_dir, "frontend/build")
-    _component_func = components.declare_component("my_component", path=build_dir)
+    _component_func = components.declare_component(
+        "st_timeline", path=build_dir)
 
 
 # Create a wrapper function for the component. This is an optional
@@ -43,7 +44,7 @@ else:
 # `declare_component` and call it done. The wrapper allows us to customize
 # our component's API: we can pre-process its input args, post-process its
 # output value, and add a docstring for users.
-def my_component(name, key=None):
+def st_timeline(name, key=None):
     """Create a new instance of "my_component".
 
     Parameters
@@ -87,7 +88,7 @@ if not _RELEASE:
 
     # Create an instance of our component with a constant `name` arg, and
     # print its output value.
-    num_clicks = my_component("Qiusheng")
+    num_clicks = st_timeline("World")
     st.markdown("You've clicked %s times!" % int(num_clicks))
 
     st.markdown("---")
@@ -102,5 +103,5 @@ if not _RELEASE:
     # and lose its current state. In this case, we want to vary the component's
     # "name" argument without having it get recreated.
     name_input = st.text_input("Enter a name", value="Streamlit")
-    num_clicks = my_component(name_input, key="foo")
+    num_clicks = st_timeline(name_input, key="foo")
     st.markdown("You've clicked %s times!" % int(num_clicks))

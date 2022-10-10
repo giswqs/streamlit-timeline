@@ -1,10 +1,10 @@
 import React from "react"
 import ReactDOM from "react-dom"
-import MyComponent from "./MyComponent"
+import StreamlitTimeline from "./StreamlitTimeline"
 
 ReactDOM.render(
   <React.StrictMode>
-    <MyComponent />
+    <StreamlitTimeline />
   </React.StrictMode>,
   document.getElementById("root")
 )

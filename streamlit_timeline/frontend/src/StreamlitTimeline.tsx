@@ -20,32 +20,36 @@ class StreamlitTimeline extends StreamlitComponentBase<State> {
 
   public render = (): ReactNode => {
 
+    // const options2 = this.props.args["options"];
+    // const options2 = {
+    //   width: "100%",
+    //   height: "200px",
+    //   stack: false,
+    //   showMajorLabels: true,
+    //   showCurrentTime: true,
+    //   zoomMin: 1000000,
+    //   type: "background",
+    //   format: {
+    //     minorLabels: {
+    //       minute: "h:mma",
+    //       hour: "ha"
+    //     }
+    //   },
+    //   groupEditable: true,
+    //   editable: {
+    //     add: true, // add new items by double tapping
+    //     updateTime: true, // drag items horizontally
+    //     updateGroup: true, // drag items from one group to another
+    //     remove: true, // delete an item by tapping the delete button top right
+    //     overrideItems: false // allow these options to override item.editable
+    //   },
+    //   selectable: true
+    // };
 
-    const options = {
-      width: "100%",
-      height: "160px",
-      stack: false,
-      showMajorLabels: true,
-      showCurrentTime: true,
-      zoomMin: 1000000,
-      type: "background",
-      format: {
-        minorLabels: {
-          minute: "h:mma",
-          hour: "ha"
-        }
-      },
-      groupEditable: true,
-      editable: {
-        add: true, // add new items by double tapping
-        updateTime: true, // drag items horizontally
-        updateGroup: true, // drag items from one group to another
-        remove: true, // delete an item by tapping the delete button top right
-        overrideItems: false // allow these options to override item.editable
-      },
-      selectable: true
-    };
-    const groups = [
+    // console.log(options);
+
+
+    const groups2 = [
       {
         id: 1,
         content: "A",
@@ -62,7 +66,7 @@ class StreamlitTimeline extends StreamlitComponentBase<State> {
         height: "120px"
       }
     ];
-    const items = [
+    const items2 = [
       {
         id: 1,
         start: new Date(2011, 7, 15),
@@ -101,7 +105,12 @@ class StreamlitTimeline extends StreamlitComponentBase<State> {
 
     // Arguments that are passed to the plugin in Python are accessible
     // via `this.props.args`. Here, we access the "name" arg.
-    const name = this.props.args["name"]
+    const options = JSON.parse(this.props.args["options"]);
+    const items = JSON.parse(this.props.args["items"]);
+    const groups = JSON.parse(this.props.args["groups"]);
+    // console.log(JSON.parse(name));
+
+    // const options = this.props.args["options"];
 
     // Streamlit sends us a theme object via props that we can use to ensure
     // that our component has visuals that match the active theme in a
@@ -140,12 +149,12 @@ class StreamlitTimeline extends StreamlitComponentBase<State> {
     //   </span>
     // )
     return (
-      <div className="App">
+      <span>
         {/* <h1>Hello Visjs Timeline</h1> */}
         <Timeline
           options={options}
           items={items}
-          // groups={groups}
+          groups={groups}
           // clickHander={this.onClicked}
           // selectHandler={this.onClicked}
           // rangechangeHandler={rangeChangeHandler}
@@ -155,19 +164,19 @@ class StreamlitTimeline extends StreamlitComponentBase<State> {
           selectHandler={(props: any) => Streamlit.setComponentValue(props.items[0])}
           // selectHandler={(props: any) => Streamlit.setComponentValue(1)}
         />
-      </div>
+      </span>
     );
   }
 
   // /** Click handler for our "Click Me!" button. */
-  private onClicked = (): void => {
-    // Increment state.numClicks, and pass the new value back to
-    // Streamlit via `Streamlit.setComponentValue`.
-    this.setState(
-      prevState => ({ numClicks: prevState.numClicks + 1 }),
-      () => Streamlit.setComponentValue(this.state.numClicks)
-    )
-  }
+  // private onClicked = (): void => {
+  //   // Increment state.numClicks, and pass the new value back to
+  //   // Streamlit via `Streamlit.setComponentValue`.
+  //   this.setState(
+  //     prevState => ({ numClicks: prevState.numClicks + 1 }),
+  //     () => Streamlit.setComponentValue(this.state.numClicks)
+  //   )
+  // }
 
   // /** Focus handler for our "Click Me!" button. */
   // private _onFocus = (): void => {

@@ -128,4 +128,4 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
-my_component/frontend/package-lock.json
+streamlit_timeline/frontend/package-lock.json

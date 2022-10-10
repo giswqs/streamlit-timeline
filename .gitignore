@@ -2,6 +2,7 @@
 __pycache__/
 *.py[cod]
 *$py.class
+**/node_modules/
 
 # C extensions
 *.so
@@ -127,3 +128,4 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+my_component/frontend/package-lock.json

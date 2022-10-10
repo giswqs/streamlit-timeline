@@ -65,22 +65,39 @@ class StreamlitTimeline extends StreamlitComponentBase<State> {
     const items = [
       {
         id: 1,
-        start: new Date(2010, 7, 15),
-        end: new Date(2010, 8, 2), // end is optional
-        content: "302S",
+        start: new Date(2011, 7, 15),
+        end: new Date(2011, 8, 2), // end is optional
+        content: "2011-07-15",
         group: 3,
-        editable: true
+        type: "point"
       },
       {
         id: 2,
-        start: new Date(2010, 7, 15),
-        end: new Date(2010, 8, 2), // end is optional
-        content: "102P",
+        start: new Date(2012, 7, 15),
+        end: new Date(2012, 8, 2), // end is optional
+        content: "2012-07-20",
+        group: 2,
+        type: "point"
+      },
+
+      {
+        id: 3,
+        start: new Date(2013, 7, 15),
+        end: new Date(2013, 8, 2), // end is optional
+        content: "2013-08-02",
         group: 2,
         type: "point"
       }
     ];
 
+    // const items = [
+    //   {id: 1, content: 'item 1', start: '2013-04-20'},
+    //   {id: 2, content: 'item 2', start: '2013-04-14'},
+    //   {id: 3, content: 'item 3', start: '2013-04-18'},
+    //   {id: 4, content: 'item 4', start: '2013-04-16'},
+    //   {id: 5, content: 'item 5', start: '2013-04-25'},
+    //   {id: 6, content: 'item 6', start: '2013-04-27'}
+    // ]
 
     // Arguments that are passed to the plugin in Python are accessible
     // via `this.props.args`. Here, we access the "name" arg.
@@ -124,18 +141,18 @@ class StreamlitTimeline extends StreamlitComponentBase<State> {
     // )
     return (
       <div className="App">
-        <h1>Hello Visjs Timeline</h1>
+        {/* <h1>Hello Visjs Timeline</h1> */}
         <Timeline
           options={options}
           items={items}
-          groups={groups}
+          // groups={groups}
           // clickHander={this.onClicked}
           // selectHandler={this.onClicked}
           // rangechangeHandler={rangeChangeHandler}
           // clickHander={(props: any) => Streamlit.setComponentValue(1)}
           // clickHander={(props: any) => console.log(props)}
-          // selectHandler={(props: any) => console.log(props.items)}
-          selectHandler={(props: any) => Streamlit.setComponentValue(props.items)}
+          // selectHandler={(props: any) => console.log(props.items[0])}
+          selectHandler={(props: any) => Streamlit.setComponentValue(props.items[0])}
           // selectHandler={(props: any) => Streamlit.setComponentValue(1)}
         />
       </div>

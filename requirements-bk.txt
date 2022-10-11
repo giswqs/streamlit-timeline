@@ -1,3 +1,0 @@
-streamlit>=1.13.0
-streamlit-vis-timeline>0.0.1
-protobuf==3.19.5

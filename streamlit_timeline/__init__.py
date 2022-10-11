@@ -6,7 +6,7 @@ import streamlit.components.v1 as components
 # the component, and True when we're ready to package and distribute it.
 # (This is, of course, optional - there are innumerable ways to manage your
 # release process.)
-_RELEASE = False
+_RELEASE = True
 
 # Declare a Streamlit component. `declare_component` returns a function
 # that is used to create instances of the component. We're naming this
@@ -36,7 +36,8 @@ else:
     # build directory:
     parent_dir = os.path.dirname(os.path.abspath(__file__))
     build_dir = os.path.join(parent_dir, "frontend/build")
-    _component_func = components.declare_component("st_timeline", path=build_dir)
+    _component_func = components.declare_component(
+        "st_timeline", path=build_dir)
 
 
 # Create a wrapper function for the component. This is an optional
@@ -106,6 +107,10 @@ def st_timeline(
     if groups is None:
         groups = []
 
+    for index, item in enumerate(items):
+        if "id" not in item:
+            item["id"] = index
+
     options_json = json.dumps(options)
     items_json = json.dumps(items)
     groups_json = json.dumps(groups)
@@ -120,7 +125,9 @@ def st_timeline(
     if component_value is None:
         return None
     else:
-        return items[component_value - 1]
+        for item in items:
+            if item["id"] == component_value:
+                return item
 
 
 # Add some test code to play with the component while it's in development.
@@ -179,7 +186,7 @@ if not _RELEASE:
     ]
 
     items = [
-        {"id": 1, "content": "2014-04-20", "start": "2014-04-20"},
+        {"id": 1, "content": "2014-04-20", "start": "2014-04-20", "selectable": True},
         {"id": 2, "content": "2014-04-14", "start": "2014-04-14"},
         {"id": 3, "content": "2014-04-18", "start": "2014-04-18"},
         {"id": 4, "content": "2014-04-16", "start": "2014-04-16"},

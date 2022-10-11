@@ -1,2 +1,2 @@
-streamlit
+streamlit>=1.13.0
 streamlit-vis-timeline>0.0.1

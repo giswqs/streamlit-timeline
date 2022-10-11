@@ -36,8 +36,7 @@ else:
     # build directory:
     parent_dir = os.path.dirname(os.path.abspath(__file__))
     build_dir = os.path.join(parent_dir, "frontend/build")
-    _component_func = components.declare_component(
-        "st_timeline", path=build_dir)
+    _component_func = components.declare_component("st_timeline", path=build_dir)
 
 
 # Create a wrapper function for the component. This is an optional
@@ -48,26 +47,20 @@ else:
 def st_timeline(
     items, groups=None, options=None, width="100%", height="200px", key=None
 ):
-    """Create a new instance of "my_component".
+    """Create a vis.js timeline with bidirectional communication. For more information about vis.js timeline, please visit https://visjs.github.io/vis-timeline/docs/timeline/.
 
-    Parameters
-    ----------
-    name: str
-        The name of the thing we're saying hello to. The component will display
-        the text "Hello, {name}!"
-    key: str or None
-        An optional key that uniquely identifies this component. If this is
-        None, and the component's arguments are changed, the component will
-        be re-mounted in the Streamlit frontend and lose its current state.
+    Args:
+        items (list): A list of timeline items.
+        groups (list, optional): A list of timeline groups. Defaults to None.
+        options (dict, optional): A dictionary of timeline options. Defaults to None.
+        width (str, optional): The width of the timeline. Defaults to "100%".
+        height (str, optional): The height of the timeline. Defaults to "200px".
+        key (str, optional): A unique key for the timeline. Defaults to None.
 
-    Returns
-    -------
-    int
-        The number of times the component's "Click Me" button has been clicked.
-        (This is the value passed to `Streamlit.setComponentValue` on the
-        frontend.)
-
+    Returns:
+        streamlit component: A vis.js timeline.
     """
+
     # Call through to our private component function. Arguments we pass here
     # will be sent to the frontend, where they'll be available in an "args"
     # dictionary.

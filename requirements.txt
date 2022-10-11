@@ -1,22 +1,2 @@
---find-links=https://girder.github.io/large_image_wheels GDAL
-geemap
-geopandas
-leafmap
-numpy
-rtree
-scipy
 streamlit
-streamlit-aggrid<0.3.3
-streamlit-plotly-events
-streamlit-nested-layout
 streamlit-vis-timeline>0.0.1
-rasterio
-rioxarray
-pystac-client
-stackstac
-utm
-intake_stac
-spectral
-earthpy
-joblib
-scikit-learn

@@ -1,9 +1,15 @@
 # streamlit-timeline-demo
 
 [![image](https://img.shields.io/pypi/v/streamlit-vis-timeline.svg)](https://pypi.python.org/pypi/streamlit-vis-timeline)
+[![image](https://pepy.tech/badge/streamlit-vis-timeline)](https://pepy.tech/project/streamlit-vis-timeline)
 [![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://timeline.streamlitapp.com/)
 
-Streamlit component for rendering [vis.js timeline](https://github.com/visjs/vis-timeline)
+Streamlit component for rendering [vis.js timeline](https://github.com/visjs/vis-timeline) with bidirectional communication.
+
+Check out the GitHub repositories [streamlit-timeline](https://github.com/giswqs/streamlit-timeline) and
+[streamlit-timeline-demo](https://github.com/giswqs/streamlit-timeline-demo). For JavaScript examples,
+check out the vis.js timeline [examples](https://visjs.github.io/vis-timeline/examples/timeline/) and
+[documentation](https://visjs.github.io/vis-timeline/docs/timeline/).
 
 ## Installation
 

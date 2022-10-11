@@ -1,0 +1,2 @@
+libspatialindex-dev
+libtk8.6

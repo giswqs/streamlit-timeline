@@ -1,0 +1,8 @@
+name: timeline
+channels:
+  - conda-forge
+dependencies:
+  - streamlit
+  - pip
+  - pip:
+      - streamlit-vis-timeline

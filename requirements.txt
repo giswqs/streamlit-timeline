@@ -4,4 +4,3 @@ streamlit-aggrid
 streamlit-plotly-events
 streamlit-nested-layout
 streamlit-vis-timeline>0.0.1
-# git+https://github.com/giswq

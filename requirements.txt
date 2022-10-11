@@ -1,6 +1,2 @@
 streamlit
-streamlit
-streamlit-aggrid
-streamlit-plotly-events
-streamlit-nested-layout
 streamlit-vis-timeline>0.0.1

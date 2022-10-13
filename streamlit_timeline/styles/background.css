@@ -1,0 +1,18 @@
+.App {
+    font-family: sans-serif;
+    text-align: center;
+  }
+  .vis-timeline {
+    border: 2px solid purple;
+    font-family: purisa, "comic sans", cursive;
+    font-size: 12pt;
+    background: #ffecea;
+  }
+  
+  .vis-item {
+    border-color: #f991a3;
+    background-color: pink;
+    font-size: 12pt;
+    color: purple;
+    box-shadow: 5px 5px 20px rgba(128, 128, 128, 0.5);
+  }

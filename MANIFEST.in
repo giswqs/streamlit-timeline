@@ -1,2 +1,3 @@
 recursive-include streamlit_timeline/frontend/build *
+recursive-include streamlit_timeline/styles *
 include changelog.md

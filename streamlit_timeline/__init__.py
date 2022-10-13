@@ -1,5 +1,6 @@
 import json
 import os
+import streamlit as st
 import streamlit.components.v1 as components
 
 # Create a _RELEASE constant. We'll set this to False while we're developing
@@ -36,7 +37,60 @@ else:
     # build directory:
     parent_dir = os.path.dirname(os.path.abspath(__file__))
     build_dir = os.path.join(parent_dir, "frontend/build")
-    _component_func = components.declare_component("st_timeline", path=build_dir)
+    _component_func = components.declare_component(
+        "st_timeline", path=build_dir)
+
+
+@st.cache(allow_output_mutation=True)
+def _import_styles(style, release=True):
+    """Import styles from the frontend's build directory."""
+
+    import shutil
+    import pkg_resources
+
+    if release:
+        try:
+            parent_dir = os.path.dirname(
+                pkg_resources.resource_filename(
+                    "streamlit_timeline", "__init__.py")
+            )
+        except ModuleNotFoundError as e:
+            raise ModuleNotFoundError(e)
+        except Exception as e:
+            raise Exception(e)
+    else:
+        parent_dir = os.path.dirname(os.path.abspath(__file__))
+    build_dir = os.path.join(parent_dir, "frontend/build")
+    html_path = os.path.join(build_dir, "index.html")
+    style_path = os.path.join(build_dir, "static/css/styles.css")
+    html_backup = os.path.join(build_dir, "index_bk.html")
+    if not os.path.exists(html_backup):
+        shutil.copyfile(html_path, html_backup)
+
+    if style is None:
+        shutil.copyfile(html_backup, html_path)
+
+    else:
+        if isinstance(style, str):
+            if os.path.exists(style):
+                shutil.copyfile(style, style_path)
+            else:
+                with open(style_path, "w") as f:
+                    f.write(style)
+        else:
+            raise TypeError("style must be a string or a path to a css file.")
+
+        with open(html_path, "r") as f:
+            content = f.read()
+
+        if "styles.css" not in content:
+            with open(html_path, "w") as f:
+                f.write(
+                    content.replace(
+                        '<link rel="stylesheet" href="bootstrap.min.css"/>',
+                        '<link rel="stylesheet" href="bootstrap.min.css"/><link rel="stylesheet" href="./static/css/styles.css"/>',
+                    )
+                )
 
 
 # Create a wrapper function for the component. This is an optional
@@ -45,7 +99,7 @@ else:
 # our component's API: we can pre-process its input args, post-process its
 # output value, and add a docstring for users.
 def st_timeline(
-    items, groups=None, options=None, width="100%", height="200px", key=None
+    items, groups=None, options=None, style=None, width="100%", height="200px", key=None
 ):
     """Create a vis.js timeline with bidirectional communication. For more information about vis.js timeline, please visit https://visjs.github.io/vis-timeline/docs/timeline/.
 
@@ -53,6 +107,7 @@ def st_timeline(
         items (list): A list of timeline items.
         groups (list, optional): A list of timeline groups. Defaults to None.
         options (dict, optional): A dictionary of timeline options. Defaults to None.
+        style (str, optional): A string of css styles or a path to a css file. Defaults to None.
         width (str, optional): The width of the timeline. Defaults to "100%".
         height (str, optional): The height of the timeline. Defaults to "200px".
         key (str, optional): A unique key for the timeline. Defaults to None.
@@ -67,6 +122,8 @@ def st_timeline(
     #
     # "default" is a special argument that specifies the initial return
     # value of the component before the user has interacted with it.
+
+    _import_styles(style, True)
 
     if options is None:
         options = {
@@ -187,24 +244,6 @@ if not _RELEASE:
         {"id": 6, "content": "2014-04-27", "start": "2014-04-27"},
     ]
 
-    timeline = st_timeline(items, groups=[], options={}, height="300px")
+    timeline = st_timeline(items, groups=[], options={},
+                           style=None, height="300px")
     st.write(timeline)
-
-    # if timeline is not None:
-    #     st.markdown("You've clicked %s !" % items[timeline])
-    # st.markdown("You've clicked %s times!" % int(num_clicks))
-
-    # st.markdown("---")
-    # st.subheader("Component with variable args")
-
-    # # Create a second instance of our component whose `name` arg will vary
-    # # based on a text_input widget.
-    # #
-    # # We use the special "key" argument to assign a fixed identity to this
-    # # component instance. By default, when a component's arguments change,
-    # # it is considered a new instance and will be re-mounted on the frontend
-    # # and lose its current state. In this case, we want to vary the component's
-    # # "name" argument without having it get recreated.
-    # name_input = st.text_input("Enter a name", value="Streamlit")
-    # num_clicks = st_timeline(name_input, key="foo")
-    # st.markdown("You've clicked %s times!" % int(num_clicks))

@@ -41,7 +41,7 @@ else:
         "st_timeline", path=build_dir)
 
 
-@st.cache(allow_output_mutation=True)
+@st.cache_data
 def _import_styles(style, release=True):
     """Import styles from the frontend's build directory."""
 

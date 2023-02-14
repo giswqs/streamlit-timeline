@@ -5,7 +5,7 @@ with open("README.md") as readme_file:
 
 setuptools.setup(
     name="streamlit-vis-timeline",
-    version="0.2.0",
+    version="0.2.1",
     author="Qiusheng Wu",
     author_email="giswqs@gmail.com",
     description="Streamlit component for rendering vis.js timeline",
@@ -24,6 +24,7 @@ setuptools.setup(
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
+        "Programming Language :: Python :: 3.11",
     ],
     python_requires=">=3.7",
     install_requires=[

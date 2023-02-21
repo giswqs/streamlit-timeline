@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.3.0 - Feb 21, 2023
+
+- Fixed missing frontend assets
+
 ## v0.2.1 - Feb 14, 2023
 
 - Changed `st_cache` to `st_cache_data`-

@@ -175,9 +175,10 @@ def st_timeline(
     if component_value is None:
         return None
     else:
-        for item in items:
-            if item["id"] == component_value:
-                return item
+        all_items = []
+        for item_id in component_value['items']:
+            all_items.append(items[item_id])
+        return all_items
 
 
 # Add some test code to play with the component while it's in development.

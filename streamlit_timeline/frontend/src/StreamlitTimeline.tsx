@@ -45,6 +45,16 @@ class StreamlitTimeline extends StreamlitComponentBase<State> {
       }`
       style.border = borderStyling
       style.outline = borderStyling
+
+    }
+
+    const handleSelect = (props: any) => {
+      const componentValue = {
+        callback: "select",
+        items: props.items,
+      }
+  
+      Streamlit.setComponentValue(componentValue)
     }
 
     return (
@@ -58,7 +68,7 @@ class StreamlitTimeline extends StreamlitComponentBase<State> {
           // rangechangeHandler={rangeChangeHandler}
           // clickHander={(props: any) => console.log(props)}
           // selectHandler={(props: any) => console.log(props.items[0])}
-          selectHandler={(props: any) => Streamlit.setComponentValue(props.items[0])}
+          selectHandler={handleSelect}
         />
       </span>
     );

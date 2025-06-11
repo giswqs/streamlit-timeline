@@ -46,14 +46,13 @@ def _import_styles(style, release=True):
     """Import styles from the frontend's build directory."""
 
     import shutil
-    import pkg_resources
+    import importlib_resources
 
     if release:
         try:
-            parent_dir = os.path.dirname(
-                pkg_resources.resource_filename(
-                    "streamlit_timeline", "__init__.py")
-            )
+            ref = importlib_resources.files('streamlit_timeline') / '__init__.py'
+            with importlib_resources.as_file(ref) as path:
+                parent_dir = os.path.dirname(path)
         except ModuleNotFoundError as e:
             raise ModuleNotFoundError(e)
         except Exception as e:
